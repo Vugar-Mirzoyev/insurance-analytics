@@ -1,0 +1,28 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["fact_portfolio","fact_renewal","insurer_quarterly","class_quarterly","market_monthly","market_anomalies","data_quality","Date","Vehicle Type","Area","Channel","DataFolder"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table fact_portfolio
+ref table fact_renewal
+ref table insurer_quarterly
+ref table class_quarterly
+ref table market_monthly
+ref table market_anomalies
+ref table data_quality
+ref table Date
+ref table 'Vehicle Type'
+ref table Area
+ref table Channel
+
+ref cultureInfo en-US
+

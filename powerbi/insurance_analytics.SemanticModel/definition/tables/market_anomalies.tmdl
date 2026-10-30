@@ -1,0 +1,92 @@
+/// Trend and anomaly flags of the monthly market series (src/trends.py)
+table market_anomalies
+	lineageTag: 5701e979-8f40-43e2-bd85-0b183c7f4f43
+
+	column month_start
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: f0b3015e-5d25-4b3c-94db-e5953524b49a
+		summarizeBy: none
+		sourceColumn: month_start
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column value
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 7f39b5cb-61c9-4190-abc4-35dd7796f92d
+		summarizeBy: none
+		sourceColumn: value
+
+	column ma_3
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 4b2baed9-f6bc-4cb1-b056-620a706f9c12
+		summarizeBy: none
+		sourceColumn: ma_3
+
+	column ma_12
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 5ace2870-8e09-4dca-b489-d905a7055695
+		summarizeBy: none
+		sourceColumn: ma_12
+
+	column rolling_z
+		dataType: double
+		formatString: 0.00
+		lineageTag: 3a97c4c0-8a08-4618-b8af-b81d5ea25077
+		summarizeBy: none
+		sourceColumn: rolling_z
+
+	column z_flag
+		dataType: boolean
+		lineageTag: 75dc5ac9-6b28-4a76-9a5c-3408ed8e1bf0
+		summarizeBy: none
+		sourceColumn: z_flag
+
+	column yoy
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 27aa59d7-b376-4518-b25e-095988b41b3c
+		summarizeBy: none
+		sourceColumn: yoy
+
+	column iqr_flag
+		dataType: boolean
+		lineageTag: 9fcb55ca-c3c9-4cf1-9e65-e564343fece6
+		summarizeBy: none
+		sourceColumn: iqr_flag
+
+	column metric
+		dataType: string
+		lineageTag: 93b252d5-989f-46b4-8f79-982308dfe72b
+		summarizeBy: none
+		sourceColumn: metric
+
+	/// Flagged by the z-score or the IQR rule
+	column flagged
+		dataType: boolean
+		lineageTag: 5f815685-d040-43bf-ad22-fb07e2b8dec0
+		summarizeBy: none
+		sourceColumn: flagged
+
+	/// Which rule flagged the month: z-score, IQR or both
+	column flagged_by
+		dataType: string
+		lineageTag: 1c691b3e-1df2-47fd-a13c-5ae8d687266f
+		summarizeBy: none
+		sourceColumn: flagged_by
+
+	partition market_anomalies = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\market_anomalies.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"month_start", type date}, {"value", type number}, {"ma_3", type number}, {"ma_12", type number}, {"rolling_z", type number}, {"z_flag", type logical}, {"yoy", type number}, {"iqr_flag", type logical}, {"metric", type text}}, "en-US"),
+				    #"Added Flagged" = Table.AddColumn(#"Changed Type", "flagged", each [z_flag] or [iqr_flag], type logical),
+				    #"Added Flagged By" = Table.AddColumn(#"Added Flagged", "flagged_by", each if [z_flag] and [iqr_flag] then "both" else if [z_flag] then "z-score" else if [iqr_flag] then "IQR" else null, type text)
+				in
+				    #"Added Flagged By"
+

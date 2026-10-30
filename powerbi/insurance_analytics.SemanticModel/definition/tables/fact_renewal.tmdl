@@ -1,0 +1,77 @@
+/// Policies due for renewal and renewed, by due month and segment
+table fact_renewal
+	lineageTag: e3e6eb82-9eb8-40bc-be90-bfe0646faa45
+
+	/// Policy years that reached their renewal date before the data ends
+	measure 'Policies Due' = SUM ( fact_renewal[policies_due] )
+		formatString: #,0
+		displayFolder: Renewal
+		lineageTag: 6d6921c9-61be-4119-9c4a-ef550654df38
+
+	/// Policy years followed by a new period of the same policy
+	measure 'Policies Renewed' = SUM ( fact_renewal[policies_renewed] )
+		formatString: #,0
+		displayFolder: Renewal
+		lineageTag: f2a3882c-fd94-4a18-958a-7c133a77697c
+
+	/// Policies renewed / policies due
+	measure 'Renewal Rate' = DIVIDE ( [Policies Renewed], [Policies Due] )
+		formatString: 0.0%
+		displayFolder: Renewal
+		lineageTag: 42751fd9-86ea-4b2a-aa76-f4004a8bc836
+
+	/// First day of the month the policy period ended
+	column month_start
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 44351b66-bd89-41ad-8f03-da1644c216a0
+		summarizeBy: none
+		sourceColumn: month_start
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column vehicle_type
+		dataType: string
+		isHidden
+		lineageTag: 8b98e5a8-c760-4430-8a44-d96098e15867
+		summarizeBy: none
+		sourceColumn: vehicle_type
+
+	column area
+		dataType: string
+		isHidden
+		lineageTag: 001d7a8e-336a-494b-930c-1572fdc38e80
+		summarizeBy: none
+		sourceColumn: area
+
+	column channel
+		dataType: string
+		isHidden
+		lineageTag: e452523b-bcc7-4e3a-8f95-31c153fe0f41
+		summarizeBy: none
+		sourceColumn: channel
+
+	column policies_due
+		dataType: int64
+		formatString: #,0
+		lineageTag: f9719328-c5f5-41e7-9e47-42c22346fe83
+		summarizeBy: sum
+		sourceColumn: policies_due
+
+	column policies_renewed
+		dataType: int64
+		formatString: #,0
+		lineageTag: ccb405bf-d94c-43c3-9092-2894aba626a4
+		summarizeBy: sum
+		sourceColumn: policies_renewed
+
+	partition fact_renewal = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\fact_renewal.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"month_start", type date}, {"vehicle_type", type text}, {"area", type text}, {"channel", type text}, {"policies_due", Int64.Type}, {"policies_renewed", Int64.Type}}, "en-US")
+				in
+				    #"Changed Type"
+

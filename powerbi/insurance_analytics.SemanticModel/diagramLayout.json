@@ -1,0 +1,165 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1135.7687469725051,
+            "y": 385.59871776876309
+          },
+          "nodeIndex": "Area",
+          "nodeLineageTag": "e85d7149-0eaf-43d3-8760-605e145b87c3",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1135.7080897956344,
+            "y": -2.323878616040929
+          },
+          "nodeIndex": "Channel",
+          "nodeLineageTag": "9a1c97c1-d1fa-4058-94f8-67c4ea46d948",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 337.0131792580305,
+            "y": -50
+          },
+          "nodeIndex": "class_quarterly",
+          "nodeLineageTag": "80eb1151-3c48-488f-810f-22a45bb15738",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1369.7687469725051,
+            "y": 404.67691215867103
+          },
+          "nodeIndex": "data_quality",
+          "nodeLineageTag": "eb963296-3cb3-4a43-8bf3-065c098a495a",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 465.073522509133,
+            "y": 342.30386405399418
+          },
+          "nodeIndex": "Date",
+          "nodeLineageTag": "d24fbc67-68b6-46fe-b5e1-66b593181022",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 848.73632921746309,
+            "y": 129.13159761912493
+          },
+          "nodeIndex": "fact_portfolio",
+          "nodeLineageTag": "fc3f2629-1b0b-4a02-a430-7b793c42358c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 752.173605924685,
+            "y": 482.69818353355265
+          },
+          "nodeIndex": "fact_renewal",
+          "nodeLineageTag": "e3e6eb82-9eb8-40bc-be90-bfe0646faa45",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 178.02728765487791,
+            "y": 553.6742205620809
+          },
+          "nodeIndex": "insurer_quarterly",
+          "nodeLineageTag": "8f7d4ca3-48bd-4724-a344-0a11a3386c57",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1653.7687469725051,
+            "y": 342.67691215867103
+          },
+          "nodeIndex": "market_anomalies",
+          "nodeLineageTag": "5701e979-8f40-43e2-bd85-0b183c7f4f43",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 228.70248383740545
+          },
+          "nodeIndex": "market_monthly",
+          "nodeLineageTag": "46582ded-a8eb-45de-aa13-4a34c7c2f0ce",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 841.30089542422559,
+            "y": 831.35382431734217
+          },
+          "nodeIndex": "Vehicle Type",
+          "nodeLineageTag": "2c8f488f-8715-4009-b19f-7071e29cb3d8",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Tüm tablolar",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Tüm tablolar",
+  "defaultDiagram": "Tüm tablolar"
+}

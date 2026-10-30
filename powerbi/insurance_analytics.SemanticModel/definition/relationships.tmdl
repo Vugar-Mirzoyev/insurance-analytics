@@ -1,0 +1,44 @@
+relationship 26886849-2909-55e8-aa98-3d1706348841
+	fromColumn: fact_portfolio.month_start
+	toColumn: Date.Date
+
+relationship 3a101591-ade1-5fb3-8528-0e73172568f8
+	fromColumn: fact_renewal.month_start
+	toColumn: Date.Date
+
+relationship 72b57b96-ef0c-517f-b5dd-f799139540d6
+	fromColumn: market_monthly.month_start
+	toColumn: Date.Date
+
+relationship afa7d50a-3860-50bf-99b4-c38e36bb4120
+	fromColumn: insurer_quarterly.quarter_start
+	toColumn: Date.Date
+
+relationship e8e2e5e5-a319-5706-8386-a0e67fcbe870
+	fromColumn: class_quarterly.quarter_start
+	toColumn: Date.Date
+
+relationship 8ae58014-d6ca-5db1-b305-a4a2f178f247
+	fromColumn: fact_portfolio.vehicle_type
+	toColumn: 'Vehicle Type'.vehicle_type
+
+relationship 2d072dea-55c6-5498-b0af-7d58754408a3
+	fromColumn: fact_renewal.vehicle_type
+	toColumn: 'Vehicle Type'.vehicle_type
+
+relationship d9da0b40-642e-5444-9168-71740fcd0a43
+	fromColumn: fact_portfolio.area
+	toColumn: Area.area
+
+relationship 5d2fb944-1ce7-5565-9020-af2e7ead84f5
+	fromColumn: fact_renewal.area
+	toColumn: Area.area
+
+relationship 57bc2379-63e3-5aca-9195-5c4be0970e70
+	fromColumn: fact_portfolio.channel
+	toColumn: Channel.channel
+
+relationship 17be6c71-8fbe-5200-bddf-2d9a60c16514
+	fromColumn: fact_renewal.channel
+	toColumn: Channel.channel
+

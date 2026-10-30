@@ -1,0 +1,74 @@
+/// Calendar from November 2015 to the last month CBAR has published (read from market_monthly.csv), so year-over-year never compares a part year with a full year
+table Date
+	lineageTag: d24fbc67-68b6-46fe-b5e1-66b593181022
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: yyyy-mm-dd
+		lineageTag: 190a694d-d989-41d5-a4cb-d69bc798396e
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 9214f6f5-5ca6-4d6f-8567-8d2872b67466
+		summarizeBy: none
+		sourceColumn: Year
+
+	column Quarter
+		dataType: string
+		lineageTag: e603318a-97f3-4b19-858a-731039430e6e
+		summarizeBy: none
+		sourceColumn: Quarter
+
+	column Year-Quarter
+		dataType: string
+		lineageTag: 1fb14f70-48bd-45dc-a8e2-2b9648931e0f
+		summarizeBy: none
+		sourceColumn: Year-Quarter
+
+	/// Short axis label such as Q3-26
+	column 'Quarter Label'
+		dataType: string
+		lineageTag: 29e793af-8041-4295-b671-c234948089f6
+		summarizeBy: none
+		sourceColumn: Quarter Label
+		sortByColumn: Year-Quarter
+
+	column Month
+		dataType: string
+		lineageTag: 83b965c0-4b3c-48d8-91e7-48eecc9a6a1a
+		summarizeBy: none
+		sourceColumn: Month
+
+	column 'Month No'
+		dataType: int64
+		formatString: 0
+		lineageTag: 062b3cb3-7011-4501-88aa-2449c4be637e
+		summarizeBy: none
+		sourceColumn: Month No
+
+	partition Date = m
+		mode: import
+		source =
+				let
+				    Market = Table.PromoteHeaders(Csv.Document(File.Contents(DataFolder & "\market_monthly.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]), [PromoteAllScalars = true]),
+				    LastMonth = List.Max(List.Transform(Market[month_start], each Date.FromText(_, [Format = "yyyy-MM-dd", Culture = "en-US"]))),
+				    StartDate = #date(2015, 11, 1),
+				    EndDate = Date.EndOfMonth(LastMonth),
+				    Dates = List.Dates(StartDate, Duration.Days(EndDate - StartDate) + 1, #duration(1, 0, 0, 0)),
+				    #"Dates as Table" = Table.FromColumns({Dates}, type table [Date = date]),
+				    #"Added Year" = Table.AddColumn(#"Dates as Table", "Year", each Date.Year([Date]), Int64.Type),
+				    #"Added Quarter" = Table.AddColumn(#"Added Year", "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text),
+				    #"Added Year-Quarter" = Table.AddColumn(#"Added Quarter", "Year-Quarter", each Text.From(Date.Year([Date])) & "-Q" & Text.From(Date.QuarterOfYear([Date])), type text),
+				    #"Added Quarter Label" = Table.AddColumn(#"Added Year-Quarter", "Quarter Label", each "Q" & Text.From(Date.QuarterOfYear([Date])) & "-" & Text.End(Text.From(Date.Year([Date])), 2), type text),
+				    #"Added Month" = Table.AddColumn(#"Added Quarter Label", "Month", each Date.ToText([Date], [Format = "yyyy-MM", Culture = "en-US"]), type text),
+				    #"Added Month No" = Table.AddColumn(#"Added Month", "Month No", each Date.Month([Date]), Int64.Type)
+				in
+				    #"Added Month No"
+

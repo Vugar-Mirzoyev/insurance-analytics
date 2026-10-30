@@ -1,0 +1,205 @@
+/// CBAR Table 6.1: premiums and claims paid by insurer and quarter (thousand AZN)
+table insurer_quarterly
+	lineageTag: 8f7d4ca3-48bd-4724-a344-0a11a3386c57
+
+	/// Premiums written, thousand AZN
+	measure 'Total Premiums' = SUM ( insurer_quarterly[premiums] )
+		formatString: #,0
+		displayFolder: Market
+		lineageTag: d89c68ef-c9b2-4fc0-8e07-eaa6b2049711
+
+	/// Claims paid, thousand AZN
+	measure 'Total Claims Paid' = SUM ( insurer_quarterly[claims_paid] )
+		formatString: #,0
+		displayFolder: Market
+		lineageTag: ec27d957-b9bd-41e0-aabd-2037c5e08df9
+
+	/// Premiums written, million AZN
+	measure 'Premiums (mln AZN)' = DIVIDE ( [Total Premiums], 1000 )
+		formatString: #,0.0
+		displayFolder: Market
+		lineageTag: 2c0953cf-1c6a-48af-84f5-bcc51dcaca4c
+
+	/// Claims paid, million AZN
+	measure 'Claims Paid (mln AZN)' = DIVIDE ( [Total Claims Paid], 1000 )
+		formatString: #,0.0
+		displayFolder: Market
+		lineageTag: 043347d2-263e-45ed-98f3-42d65d8cb1d6
+
+	/// Claims paid / premiums written in the same period (not a loss ratio)
+	measure 'Payout Ratio' = DIVIDE ( [Total Claims Paid], [Total Premiums] )
+		formatString: 0.0%
+		displayFolder: Market
+		lineageTag: e15e6f59-5dad-485c-bd1f-0805d7d044ca
+
+	/// Premiums of the previous quarter
+	measure 'Premiums PQ' = CALCULATE ( [Total Premiums], DATEADD ( 'Date'[Date], -1, QUARTER ) )
+		formatString: #,0
+		displayFolder: Market
+		lineageTag: ca21d282-099b-43d5-8664-9d256cafea14
+
+	/// Premium change against the previous quarter
+	measure 'QoQ %' = DIVIDE ( [Total Premiums] - [Premiums PQ], [Premiums PQ] )
+		formatString: 0.0%
+		displayFolder: Market
+		lineageTag: 476f1d9a-af5f-43ac-9ad1-2f303cee9e90
+
+	/// Premiums of the same period a year earlier
+	measure 'Premiums PY' = CALCULATE ( [Total Premiums], SAMEPERIODLASTYEAR ( 'Date'[Date] ) )
+		formatString: #,0
+		displayFolder: Market
+		lineageTag: 3178673e-ab2e-49e7-939e-26b2d0cf331e
+
+	/// Premium change against the same period a year earlier
+	measure 'YoY %' = DIVIDE ( [Total Premiums] - [Premiums PY], [Premiums PY] )
+		formatString: 0.0%
+		displayFolder: Market
+		lineageTag: 88e282d5-3905-40fa-b3c9-0dc29e3acc82
+
+	/// Claims paid in the same period a year earlier
+	measure 'Claims Paid PY' = CALCULATE ( [Total Claims Paid], SAMEPERIODLASTYEAR ( 'Date'[Date] ) )
+		formatString: #,0
+		displayFolder: Market
+		lineageTag: 00699027-7167-4386-ab3d-12cc2057b69b
+
+	/// Claims paid change against the same period a year earlier
+	measure 'Claims YoY %' = DIVIDE ( [Total Claims Paid] - [Claims Paid PY], [Claims Paid PY] )
+		formatString: 0.0%
+		displayFolder: Market
+		lineageTag: 683fe269-73db-4a47-b9a5-27776b9641ec
+
+	/// Insurer premiums / all insurers' premiums in the period
+	measure 'Market Share' =
+			DIVIDE (
+			    [Total Premiums],
+			    CALCULATE (
+			        [Total Premiums],
+			        REMOVEFILTERS ( insurer_quarterly[insurer], insurer_quarterly[segment], insurer_quarterly[licence_revoked] )
+			    )
+			)
+		formatString: 0.0%
+		displayFolder: Market
+		lineageTag: 02de8d87-5692-4dec-bbc9-50aa46ab65aa
+
+	/// Insurer premiums / premiums of all life (or all non-life) insurers
+	measure 'Segment Share' =
+			VAR seg = SELECTEDVALUE ( insurer_quarterly[segment] )
+			RETURN
+			    DIVIDE (
+			        [Total Premiums],
+			        CALCULATE (
+			            [Total Premiums],
+			            REMOVEFILTERS ( insurer_quarterly[insurer], insurer_quarterly[licence_revoked] ),
+			            insurer_quarterly[segment] = seg
+			        )
+			    )
+		formatString: 0.0%
+		displayFolder: Market
+		lineageTag: d875c1ed-2ef6-4160-b3e9-863e3662f426
+
+	column insurer
+		dataType: string
+		lineageTag: 68fe0f91-e507-4827-8862-fa9f446b573e
+		summarizeBy: none
+		sourceColumn: insurer
+
+	column segment
+		dataType: string
+		lineageTag: 073dc0f8-911e-4c64-8dc0-6ff440b5e862
+		summarizeBy: none
+		sourceColumn: segment
+
+	column licence_revoked
+		dataType: int64
+		lineageTag: f20eeb4b-8e92-4d1e-acf0-65aa8dccebba
+		summarizeBy: none
+		sourceColumn: licence_revoked
+
+	column period
+		dataType: string
+		lineageTag: 5f66be0b-495f-481b-91f7-c62b79d361db
+		summarizeBy: none
+		sourceColumn: period
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: c9c33038-6f2c-46e1-a9c0-059120db5495
+		summarizeBy: none
+		sourceColumn: year
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 1540101b-74e7-4c15-bfce-c079b111ef40
+		summarizeBy: none
+		sourceColumn: quarter
+
+	column premiums
+		dataType: double
+		formatString: #,0.0
+		lineageTag: a1f96824-4695-4352-91b0-86c0f3c4bf08
+		summarizeBy: sum
+		sourceColumn: premiums
+
+	column claims_paid
+		dataType: double
+		formatString: #,0.0
+		lineageTag: c8b110bf-d4ef-440c-835d-fa106349a0af
+		summarizeBy: sum
+		sourceColumn: claims_paid
+
+	column payout_ratio
+		dataType: double
+		isHidden
+		formatString: 0.0%
+		lineageTag: 811b1cf3-142e-4079-bd1a-614bc84dccac
+		summarizeBy: none
+		sourceColumn: payout_ratio
+
+	column market_share
+		dataType: double
+		isHidden
+		formatString: 0.0%
+		lineageTag: 59e16adc-f579-46f4-9bf4-9123f8ca15b7
+		summarizeBy: none
+		sourceColumn: market_share
+
+	column segment_share
+		dataType: double
+		isHidden
+		formatString: 0.0%
+		lineageTag: 0c22c955-ece9-4acc-ac66-8c7eea00b829
+		summarizeBy: none
+		sourceColumn: segment_share
+
+	column premiums_yoy
+		dataType: double
+		isHidden
+		formatString: 0.0%
+		lineageTag: cd21fe6e-370d-4d4d-bebf-51770ebf8ad9
+		summarizeBy: none
+		sourceColumn: premiums_yoy
+
+	/// First day of the quarter, joins to Date
+	column quarter_start
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: a83efeab-d43f-4933-8891-52c85ac80779
+		summarizeBy: none
+		sourceColumn: quarter_start
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition insurer_quarterly = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\insurer_quarterly.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"insurer", type text}, {"segment", type text}, {"licence_revoked", Int64.Type}, {"period", type text}, {"year", Int64.Type}, {"quarter", Int64.Type}, {"premiums", type number}, {"claims_paid", type number}, {"payout_ratio", type number}, {"market_share", type number}, {"segment_share", type number}, {"premiums_yoy", type number}}, "en-US"),
+				    #"Added Quarter Start" = Table.AddColumn(#"Changed Type", "quarter_start", each #date([year], [quarter] * 3 - 2, 1), type date)
+				in
+				    #"Added Quarter Start"
+

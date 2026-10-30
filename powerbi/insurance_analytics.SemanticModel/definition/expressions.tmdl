@@ -1,0 +1,7 @@
+/// Folder with the CSV files from run_pipeline.py. Change it in Transform data > Edit parameters
+/// if the project is somewhere else.
+expression DataFolder = "C:\Users\Lenovo\Vugar\Projeler\insurance-analytics\data\processed" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]
+	lineageTag: 3f540683-9ebc-434b-bd34-80044dc4b953
+
+	annotation PBI_ResultType = Text
+

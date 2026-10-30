@@ -1,0 +1,18 @@
+/// Slicer table: filters fact_portfolio and fact_renewal together
+table Area
+	lineageTag: e85d7149-0eaf-43d3-8760-605e145b87c3
+
+	column area
+		dataType: string
+		lineageTag: 7b8d9445-2de1-4485-9da9-98597005db69
+		summarizeBy: none
+		sourceColumn: area
+
+	partition Area = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [area = text], {{"Rural"}, {"Urban"}})
+				in
+				    Source
+

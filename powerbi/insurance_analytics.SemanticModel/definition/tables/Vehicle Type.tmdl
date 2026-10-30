@@ -1,0 +1,18 @@
+/// Slicer table: filters fact_portfolio and fact_renewal together
+table 'Vehicle Type'
+	lineageTag: 2c8f488f-8715-4009-b19f-7071e29cb3d8
+
+	column vehicle_type
+		dataType: string
+		lineageTag: e4a92ca2-3766-4b1f-a3b0-a8a8d7700469
+		summarizeBy: none
+		sourceColumn: vehicle_type
+
+	partition 'Vehicle Type' = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [vehicle_type = text], {{"Agricultural"}, {"Motorbike"}, {"Passenger car"}, {"Van"}})
+				in
+				    Source
+

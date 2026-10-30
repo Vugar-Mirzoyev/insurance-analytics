@@ -1,0 +1,159 @@
+/// Portfolio totals by start month and segment (data/processed/fact_portfolio.csv)
+table fact_portfolio
+	lineageTag: fc3f2629-1b0b-4a02-a430-7b793c42358c
+
+	/// Annual premium of the policy years
+	measure 'Written Premium' = SUM ( fact_portfolio[written_premium] )
+		formatString: #,0
+		displayFolder: Portfolio
+		lineageTag: 8360ae87-bcf5-4e43-92a3-d9a2d205a330
+
+	/// Premium for the part of each policy year that was on risk
+	measure 'Earned Premium' = SUM ( fact_portfolio[earned_premium] )
+		formatString: #,0
+		displayFolder: Portfolio
+		lineageTag: 2f29b1b7-597d-43a2-8826-34e7110f3d1a
+
+	/// Cost of the claims of the policy years
+	measure 'Claims Cost' = SUM ( fact_portfolio[claims_cost] )
+		formatString: #,0
+		displayFolder: Portfolio
+		lineageTag: c3fd96f8-5d04-481b-b831-400d1ecde140
+
+	/// Number of claims
+	measure 'Claim Count' = SUM ( fact_portfolio[claim_count] )
+		formatString: #,0
+		displayFolder: Portfolio
+		lineageTag: 04eecb76-40ac-47b1-be5f-946428dffac4
+
+	/// Years on risk
+	measure 'Exposure Years' = SUM ( fact_portfolio[exposure_years] )
+		formatString: #,0.0
+		displayFolder: Portfolio
+		lineageTag: 495110c0-c956-466c-8fdd-0598febd7b98
+
+	/// Claims cost / earned premium
+	measure 'Loss Ratio' = DIVIDE ( [Claims Cost], [Earned Premium] )
+		formatString: 0.0%
+		displayFolder: Portfolio
+		lineageTag: bdc7c371-4700-4c38-87e1-fa5ac2711baf
+
+	/// Claims cost / written premium: too low for policy years still running
+	measure 'Loss Ratio (Written)' = DIVIDE ( [Claims Cost], [Written Premium] )
+		formatString: 0.0%
+		displayFolder: Portfolio
+		lineageTag: 8bfb45ce-6cc6-499e-a4ec-299ef80433d5
+
+	/// Loss ratio of policy years that ended by the valuation date (started up to December 2017), so segments are compared on fully earned years
+	measure 'Loss Ratio (Finished)' =
+			VAR ValuationDate = DATE ( 2018, 12, 31 )
+			RETURN
+			    CALCULATE (
+			        [Loss Ratio],
+			        KEEPFILTERS ( fact_portfolio[month_start] <= EDATE ( ValuationDate, -12 ) )
+			    )
+		formatString: 0.0%
+		displayFolder: Portfolio
+		lineageTag: 71222228-0c19-419d-b5a1-a2d83f92f65b
+
+	/// Share of the written premium that is earned
+	measure 'Earned Share' = DIVIDE ( [Earned Premium], [Written Premium] )
+		formatString: 0.0%
+		displayFolder: Portfolio
+		lineageTag: becc95dd-cec1-4edd-823f-20c18471849a
+
+	/// Claims per year on risk
+	measure Frequency = DIVIDE ( [Claim Count], [Exposure Years] )
+		formatString: 0.000
+		displayFolder: Portfolio
+		lineageTag: 21eac7c7-50e8-4e4c-a9dd-966a13623a80
+
+	/// Average cost per claim
+	measure Severity = DIVIDE ( [Claims Cost], [Claim Count] )
+		formatString: #,0
+		displayFolder: Portfolio
+		lineageTag: 3a902d4b-c230-48e6-a012-b2e0a523815c
+
+	/// First day of the month the policy period started
+	column month_start
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 0d88bd44-2455-4e55-8e63-ae54c64290b6
+		summarizeBy: none
+		sourceColumn: month_start
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column vehicle_type
+		dataType: string
+		isHidden
+		lineageTag: 247362f7-fc9c-491c-9cfc-29a46b20d0f4
+		summarizeBy: none
+		sourceColumn: vehicle_type
+
+	column area
+		dataType: string
+		isHidden
+		lineageTag: 88c98612-fbfe-414e-9edb-4dcd05753d70
+		summarizeBy: none
+		sourceColumn: area
+
+	column channel
+		dataType: string
+		isHidden
+		lineageTag: 301c94a2-467a-41b3-bf70-253dc4898b97
+		summarizeBy: none
+		sourceColumn: channel
+
+	column policy_years
+		dataType: int64
+		formatString: #,0
+		lineageTag: f0607b78-896b-4997-bb70-3b1688a21191
+		summarizeBy: sum
+		sourceColumn: policy_years
+
+	column written_premium
+		dataType: double
+		formatString: #,0
+		lineageTag: 9958b29e-50bc-404d-b9a9-6a8d4258b461
+		summarizeBy: sum
+		sourceColumn: written_premium
+
+	column earned_premium
+		dataType: double
+		formatString: #,0
+		lineageTag: 0b18f601-e8d7-4cd0-92b3-fc724ae99cfb
+		summarizeBy: sum
+		sourceColumn: earned_premium
+
+	column exposure_years
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 9200896a-7bd9-4a9a-b795-cdd41c40a324
+		summarizeBy: sum
+		sourceColumn: exposure_years
+
+	column claim_count
+		dataType: int64
+		formatString: #,0
+		lineageTag: 27297ff6-73df-4e98-b3bf-98685bacb57d
+		summarizeBy: sum
+		sourceColumn: claim_count
+
+	column claims_cost
+		dataType: double
+		formatString: #,0
+		lineageTag: ec3c9a70-b72e-4f35-a75e-021fb3275935
+		summarizeBy: sum
+		sourceColumn: claims_cost
+
+	partition fact_portfolio = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\fact_portfolio.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"month_start", type date}, {"vehicle_type", type text}, {"area", type text}, {"channel", type text}, {"policy_years", Int64.Type}, {"written_premium", type number}, {"earned_premium", type number}, {"exposure_years", type number}, {"claim_count", Int64.Type}, {"claims_cost", type number}}, "en-US")
+				in
+				    #"Changed Type"
+

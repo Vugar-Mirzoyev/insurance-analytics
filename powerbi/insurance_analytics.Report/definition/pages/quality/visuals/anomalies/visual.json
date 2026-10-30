@@ -1,0 +1,211 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "anomalies",
+  "position": {
+    "x": 24,
+    "y": 492,
+    "z": 2000,
+    "height": 216,
+    "width": 1232,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "market_anomalies"
+                    }
+                  },
+                  "Property": "metric"
+                }
+              },
+              "queryRef": "market_anomalies.metric",
+              "nativeQueryRef": "metric",
+              "displayName": "Series"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "market_anomalies"
+                    }
+                  },
+                  "Property": "month_start"
+                }
+              },
+              "queryRef": "market_anomalies.month_start",
+              "nativeQueryRef": "month_start",
+              "displayName": "Month"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "market_anomalies"
+                    }
+                  },
+                  "Property": "value"
+                }
+              },
+              "queryRef": "market_anomalies.value",
+              "nativeQueryRef": "value",
+              "displayName": "Value (thousand AZN)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "market_anomalies"
+                    }
+                  },
+                  "Property": "rolling_z"
+                }
+              },
+              "queryRef": "market_anomalies.rolling_z",
+              "nativeQueryRef": "rolling_z",
+              "displayName": "Rolling z-score"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "market_anomalies"
+                    }
+                  },
+                  "Property": "yoy"
+                }
+              },
+              "queryRef": "market_anomalies.yoy",
+              "nativeQueryRef": "yoy",
+              "displayName": "Growth vs a year earlier"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "market_anomalies"
+                    }
+                  },
+                  "Property": "flagged_by"
+                }
+              },
+              "queryRef": "market_anomalies.flagged_by",
+              "nativeQueryRef": "flagged_by",
+              "displayName": "Flagged by"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "market_anomalies"
+                  }
+                },
+                "Property": "month_start"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Months flagged by the anomaly checks'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d93af761af245bb4b9f3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "market_anomalies"
+              }
+            },
+            "Property": "flagged"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "m",
+              "Entity": "market_anomalies",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "m"
+                          }
+                        },
+                        "Property": "flagged"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "true"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  }
+}

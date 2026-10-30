@@ -1,0 +1,18 @@
+/// Slicer table: filters fact_portfolio and fact_renewal together
+table Channel
+	lineageTag: 9a1c97c1-d1fa-4058-94f8-67c4ea46d948
+
+	column channel
+		dataType: string
+		lineageTag: bac82333-5f06-468b-aa5d-15eaf3fe4506
+		summarizeBy: none
+		sourceColumn: channel
+
+	partition Channel = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [channel = text], {{"Agent"}, {"Broker"}})
+				in
+				    Source
+

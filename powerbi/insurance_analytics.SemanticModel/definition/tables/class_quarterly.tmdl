@@ -1,0 +1,120 @@
+/// CBAR Table 6.2: premiums and claims paid of the main insurance classes by quarter
+table class_quarterly
+	lineageTag: 80eb1151-3c48-488f-810f-22a45bb15738
+
+	/// Premiums of the selected class lines, thousand AZN (never sum all lines: subtotals repeat their parts)
+	measure 'Class Premiums' = SUM ( class_quarterly[premiums] )
+		formatString: #,0
+		displayFolder: Market
+		lineageTag: 4e864790-8080-444a-9975-8aff87c235b1
+
+	/// Claims paid of the selected class lines, thousand AZN
+	measure 'Class Claims Paid' = SUM ( class_quarterly[claims_paid] )
+		formatString: #,0
+		displayFolder: Market
+		lineageTag: 6a58dfbc-576e-4a5c-bc6c-96360bdb3964
+
+	/// Claims paid / premiums of the selected class lines
+	measure 'Class Payout Ratio' = DIVIDE ( [Class Claims Paid], [Class Premiums] )
+		formatString: 0.0%
+		displayFolder: Market
+		lineageTag: 0132190c-c707-42ac-b02d-66a6b2b241c9
+
+	column line_code
+		dataType: string
+		lineageTag: 8e664435-38e4-43ff-9eef-d20434515bfb
+		summarizeBy: none
+		sourceColumn: line_code
+
+	column line_name_en
+		dataType: string
+		lineageTag: 61b96610-f410-4be7-8ce1-b596ba011b5f
+		summarizeBy: none
+		sourceColumn: line_name_en
+
+	column line_label
+		dataType: string
+		lineageTag: 7b38ea45-aff6-466b-900a-0854270ecb19
+		summarizeBy: none
+		sourceColumn: line_label
+
+	column period
+		dataType: string
+		lineageTag: 4c083439-e4e6-4b3e-ad2a-b379944ba02f
+		summarizeBy: none
+		sourceColumn: period
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 574ffd72-7532-450d-9555-ddd8075e4de9
+		summarizeBy: none
+		sourceColumn: year
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 4ceece93-5e82-4cfe-9004-f0c02233a4b1
+		summarizeBy: none
+		sourceColumn: quarter
+
+	column premiums
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 2ffd942d-0567-465f-b5f3-119f2c5e942d
+		summarizeBy: sum
+		sourceColumn: premiums
+
+	column claims_paid
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 66c7e6a0-5d72-4c23-a83f-d683ead92f71
+		summarizeBy: sum
+		sourceColumn: claims_paid
+
+	column payout_ratio
+		dataType: double
+		isHidden
+		formatString: 0.0%
+		lineageTag: c17f5c4f-0ea9-4427-92c9-a970823c0401
+		summarizeBy: none
+		sourceColumn: payout_ratio
+
+	column share_of_premiums
+		dataType: double
+		isHidden
+		formatString: 0.0%
+		lineageTag: 647b5ccf-0317-4835-b034-1e8852df325a
+		summarizeBy: none
+		sourceColumn: share_of_premiums
+
+	column premiums_yoy
+		dataType: double
+		isHidden
+		formatString: 0.0%
+		lineageTag: ec8ef677-959e-4abe-80ae-24a85cabf5f8
+		summarizeBy: none
+		sourceColumn: premiums_yoy
+
+	/// First day of the quarter, joins to Date
+	column quarter_start
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: d96aa77d-8514-4f2a-aa97-72fdb8e84489
+		summarizeBy: none
+		sourceColumn: quarter_start
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition class_quarterly = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\class_quarterly.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"line_code", type text}, {"line_name_en", type text}, {"line_label", type text}, {"period", type text}, {"year", Int64.Type}, {"quarter", Int64.Type}, {"premiums", type number}, {"claims_paid", type number}, {"payout_ratio", type number}, {"share_of_premiums", type number}, {"premiums_yoy", type number}}, "en-US"),
+				    #"Added Quarter Start" = Table.AddColumn(#"Changed Type", "quarter_start", each #date([year], [quarter] * 3 - 2, 1), type date)
+				in
+				    #"Added Quarter Start"
+
