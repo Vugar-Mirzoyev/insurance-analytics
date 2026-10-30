@@ -1,0 +1,9 @@
+dimension,segment,policy_years,earned_premium,avg_premium,frequency,severity,loss_ratio_earned
+area,Urban,19866,6456101.93,331.7,0.5989,376.82,0.6804
+area,Rural,49874,15265080.56,311.91,0.5077,382.22,0.6222
+channel,Broker,31632,10292411.79,332.58,0.5803,402.25,0.7018
+channel,Agent,38108,11428770.7,305.12,0.4952,359.45,0.5834
+vehicle_type,Van,8785,2822799.64,328.4,0.7683,281.48,0.6585
+vehicle_type,Passenger car,54953,18085041.09,335.77,0.5357,407.8,0.6507
+vehicle_type,Motorbike,5419,767583.91,143.1,0.1948,252.68,0.344
+vehicle_type,Agricultural,583,45757.85,78.63,0.0017,192.67,0.0042

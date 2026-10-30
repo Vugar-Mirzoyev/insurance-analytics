@@ -1,0 +1,18 @@
+area,check,rows,why
+market,Months missing from the CBAR year-to-date series,1,"Table 6.1 has no January-August 2022 column. August and September 2022 cannot be separated, so both stay empty by month; Q3 2022 is still exact."
+market,Months where CBAR's total row is not the sum of the insurers,107,"The 6.1 total row leaves out AtaSığorta (licence revoked) up to 2024. The market is the sum of the insurers, which equals the 6.2 grand total in 113 of 116 months (the other 3 differ by at most 51 thousand AZN)."
+market,Insurer-months where a year-to-date value goes down,34,Later corrections make the single-month value negative. Kept as published; the market total of those months stays positive.
+market,Class subtotals that are not the sum of their parts,0,Must be 0: class shares and the leaf-level sums assume the tree adds up.
+portfolio,Duplicate policy-year rows,0,Must be 0: every premium and claim sum assumes one row per policy and year.
+portfolio,Claim-type rows without a matching policy year,0,A claim with no policy has no premium or exposure to be measured against.
+portfolio,Policy years with zero or negative premium,0,"Would divide by zero in the loss ratio, or make it negative."
+portfolio,Policy years with a missing period date,0,Exposure and earned premium cannot be computed without the period dates.
+portfolio,Contracts that start after the period they belong to,68,"Not used in any metric (the period dates are), but the dates contradict."
+portfolio,Lapse date before the period started,404,"A period cannot follow its own cancellation. The lapse date is ignored, so the period keeps its full exposure."
+portfolio,Renewed policies with a lapse date inside the period,306,"The policy renewed, so the lapse date is ignored and exposure is not cut."
+portfolio,Policies that ended without a lapse date,0,"Not renewed but no lapse recorded. The renewal rate uses the next row, not the lapse date, so these still count as lost."
+portfolio,Policy years not yet ended on the valuation date,35815,"Premium is written in full but only partly earned. The loss ratio of these years uses earned premium, and is still too low because of late claims."
+portfolio,Policy years due after the last renewal in the data,38697,They have not had the chance to renew. Counting them as lost would show a 0% renewal rate for December 2018.
+portfolio,Claim counts and claim costs that disagree,0,Severity (cost per claim) assumes cost and count describe the same claims.
+portfolio,Claim-type costs that do not add up to the policy-year total,11,The claim-type file is a sample used for the claim mix only; totals always come from the policy table.
+portfolio,Vehicles with power recorded as 0,1764,"0 means unknown, not a vehicle without an engine. Not used in the KPIs."

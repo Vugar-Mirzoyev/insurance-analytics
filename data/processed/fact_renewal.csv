@@ -1,0 +1,385 @@
+month_start,vehicle_type,area,channel,policies_due,policies_renewed
+2016-11-01,Agricultural,Rural,Agent,7,7
+2016-11-01,Agricultural,Rural,Broker,2,2
+2016-11-01,Motorbike,Rural,Agent,57,44
+2016-11-01,Motorbike,Rural,Broker,26,15
+2016-11-01,Motorbike,Urban,Agent,11,8
+2016-11-01,Motorbike,Urban,Broker,23,12
+2016-11-01,Passenger car,Rural,Agent,684,547
+2016-11-01,Passenger car,Rural,Broker,477,332
+2016-11-01,Passenger car,Urban,Agent,203,151
+2016-11-01,Passenger car,Urban,Broker,306,192
+2016-11-01,Van,Rural,Agent,108,87
+2016-11-01,Van,Rural,Broker,106,67
+2016-11-01,Van,Urban,Agent,33,28
+2016-11-01,Van,Urban,Broker,48,32
+2016-12-01,Agricultural,Rural,Agent,25,24
+2016-12-01,Agricultural,Rural,Broker,3,2
+2016-12-01,Agricultural,Urban,Agent,1,1
+2016-12-01,Agricultural,Urban,Broker,1,1
+2016-12-01,Motorbike,Rural,Agent,42,30
+2016-12-01,Motorbike,Rural,Broker,16,12
+2016-12-01,Motorbike,Urban,Agent,18,16
+2016-12-01,Motorbike,Urban,Broker,25,13
+2016-12-01,Passenger car,Rural,Agent,831,685
+2016-12-01,Passenger car,Rural,Broker,556,348
+2016-12-01,Passenger car,Urban,Agent,234,190
+2016-12-01,Passenger car,Urban,Broker,380,245
+2016-12-01,Van,Rural,Agent,113,82
+2016-12-01,Van,Rural,Broker,124,93
+2016-12-01,Van,Urban,Agent,32,23
+2016-12-01,Van,Urban,Broker,67,44
+2017-01-01,Agricultural,Rural,Agent,15,15
+2017-01-01,Agricultural,Rural,Broker,2,2
+2017-01-01,Agricultural,Urban,Agent,4,2
+2017-01-01,Motorbike,Rural,Agent,49,38
+2017-01-01,Motorbike,Rural,Broker,19,12
+2017-01-01,Motorbike,Urban,Agent,24,22
+2017-01-01,Motorbike,Urban,Broker,22,15
+2017-01-01,Passenger car,Rural,Agent,784,629
+2017-01-01,Passenger car,Rural,Broker,544,391
+2017-01-01,Passenger car,Urban,Agent,229,185
+2017-01-01,Passenger car,Urban,Broker,316,203
+2017-01-01,Van,Rural,Agent,111,92
+2017-01-01,Van,Rural,Broker,124,91
+2017-01-01,Van,Urban,Agent,38,26
+2017-01-01,Van,Urban,Broker,57,45
+2017-02-01,Agricultural,Rural,Agent,13,13
+2017-02-01,Agricultural,Rural,Broker,3,2
+2017-02-01,Agricultural,Urban,Agent,7,7
+2017-02-01,Agricultural,Urban,Broker,2,2
+2017-02-01,Motorbike,Rural,Agent,46,36
+2017-02-01,Motorbike,Rural,Broker,34,28
+2017-02-01,Motorbike,Urban,Agent,26,21
+2017-02-01,Motorbike,Urban,Broker,30,23
+2017-02-01,Passenger car,Rural,Agent,774,619
+2017-02-01,Passenger car,Rural,Broker,582,415
+2017-02-01,Passenger car,Urban,Agent,234,177
+2017-02-01,Passenger car,Urban,Broker,332,237
+2017-02-01,Van,Rural,Agent,111,91
+2017-02-01,Van,Rural,Broker,115,76
+2017-02-01,Van,Urban,Agent,27,21
+2017-02-01,Van,Urban,Broker,58,41
+2017-03-01,Agricultural,Rural,Agent,17,12
+2017-03-01,Agricultural,Rural,Broker,4,4
+2017-03-01,Agricultural,Urban,Agent,2,2
+2017-03-01,Motorbike,Rural,Agent,71,56
+2017-03-01,Motorbike,Rural,Broker,49,41
+2017-03-01,Motorbike,Urban,Agent,33,26
+2017-03-01,Motorbike,Urban,Broker,24,16
+2017-03-01,Passenger car,Rural,Agent,843,677
+2017-03-01,Passenger car,Rural,Broker,620,439
+2017-03-01,Passenger car,Urban,Agent,253,201
+2017-03-01,Passenger car,Urban,Broker,374,244
+2017-03-01,Van,Rural,Agent,137,115
+2017-03-01,Van,Rural,Broker,139,105
+2017-03-01,Van,Urban,Agent,23,16
+2017-03-01,Van,Urban,Broker,69,48
+2017-04-01,Agricultural,Rural,Agent,14,14
+2017-04-01,Agricultural,Rural,Broker,7,5
+2017-04-01,Agricultural,Urban,Agent,5,4
+2017-04-01,Agricultural,Urban,Broker,1,1
+2017-04-01,Motorbike,Rural,Agent,90,68
+2017-04-01,Motorbike,Rural,Broker,52,40
+2017-04-01,Motorbike,Urban,Agent,33,24
+2017-04-01,Motorbike,Urban,Broker,31,20
+2017-04-01,Passenger car,Rural,Agent,850,690
+2017-04-01,Passenger car,Rural,Broker,596,395
+2017-04-01,Passenger car,Urban,Agent,245,196
+2017-04-01,Passenger car,Urban,Broker,370,241
+2017-04-01,Van,Rural,Agent,115,94
+2017-04-01,Van,Rural,Broker,149,104
+2017-04-01,Van,Urban,Agent,29,23
+2017-04-01,Van,Urban,Broker,63,33
+2017-05-01,Agricultural,Rural,Agent,16,14
+2017-05-01,Agricultural,Rural,Broker,1,1
+2017-05-01,Agricultural,Urban,Agent,1,1
+2017-05-01,Agricultural,Urban,Broker,2,2
+2017-05-01,Motorbike,Rural,Agent,102,83
+2017-05-01,Motorbike,Rural,Broker,50,45
+2017-05-01,Motorbike,Urban,Agent,55,44
+2017-05-01,Motorbike,Urban,Broker,40,29
+2017-05-01,Passenger car,Rural,Agent,823,652
+2017-05-01,Passenger car,Rural,Broker,612,442
+2017-05-01,Passenger car,Urban,Agent,264,208
+2017-05-01,Passenger car,Urban,Broker,336,242
+2017-05-01,Van,Rural,Agent,146,114
+2017-05-01,Van,Rural,Broker,124,89
+2017-05-01,Van,Urban,Agent,40,33
+2017-05-01,Van,Urban,Broker,48,32
+2017-06-01,Agricultural,Rural,Agent,12,12
+2017-06-01,Agricultural,Rural,Broker,2,1
+2017-06-01,Agricultural,Urban,Agent,1,1
+2017-06-01,Agricultural,Urban,Broker,1,0
+2017-06-01,Motorbike,Rural,Agent,132,106
+2017-06-01,Motorbike,Rural,Broker,80,64
+2017-06-01,Motorbike,Urban,Agent,45,38
+2017-06-01,Motorbike,Urban,Broker,35,30
+2017-06-01,Passenger car,Rural,Agent,894,717
+2017-06-01,Passenger car,Rural,Broker,612,438
+2017-06-01,Passenger car,Urban,Agent,291,233
+2017-06-01,Passenger car,Urban,Broker,450,308
+2017-06-01,Van,Rural,Agent,144,120
+2017-06-01,Van,Rural,Broker,115,88
+2017-06-01,Van,Urban,Agent,30,23
+2017-06-01,Van,Urban,Broker,60,41
+2017-07-01,Agricultural,Rural,Agent,14,13
+2017-07-01,Agricultural,Rural,Broker,2,1
+2017-07-01,Agricultural,Urban,Agent,3,3
+2017-07-01,Agricultural,Urban,Broker,1,1
+2017-07-01,Motorbike,Rural,Agent,193,150
+2017-07-01,Motorbike,Rural,Broker,73,58
+2017-07-01,Motorbike,Urban,Agent,52,42
+2017-07-01,Motorbike,Urban,Broker,46,33
+2017-07-01,Passenger car,Rural,Agent,1095,906
+2017-07-01,Passenger car,Rural,Broker,686,494
+2017-07-01,Passenger car,Urban,Agent,325,267
+2017-07-01,Passenger car,Urban,Broker,467,330
+2017-07-01,Van,Rural,Agent,130,111
+2017-07-01,Van,Rural,Broker,112,87
+2017-07-01,Van,Urban,Agent,43,29
+2017-07-01,Van,Urban,Broker,67,50
+2017-08-01,Agricultural,Rural,Agent,13,13
+2017-08-01,Agricultural,Rural,Broker,4,4
+2017-08-01,Motorbike,Rural,Agent,94,73
+2017-08-01,Motorbike,Rural,Broker,49,40
+2017-08-01,Motorbike,Urban,Agent,41,31
+2017-08-01,Motorbike,Urban,Broker,39,32
+2017-08-01,Passenger car,Rural,Agent,820,683
+2017-08-01,Passenger car,Rural,Broker,528,407
+2017-08-01,Passenger car,Urban,Agent,232,186
+2017-08-01,Passenger car,Urban,Broker,294,208
+2017-08-01,Van,Rural,Agent,101,86
+2017-08-01,Van,Rural,Broker,93,69
+2017-08-01,Van,Urban,Agent,24,17
+2017-08-01,Van,Urban,Broker,43,30
+2017-09-01,Agricultural,Rural,Agent,17,16
+2017-09-01,Agricultural,Rural,Broker,3,3
+2017-09-01,Agricultural,Urban,Agent,2,2
+2017-09-01,Agricultural,Urban,Broker,2,2
+2017-09-01,Motorbike,Rural,Agent,93,81
+2017-09-01,Motorbike,Rural,Broker,56,42
+2017-09-01,Motorbike,Urban,Agent,31,26
+2017-09-01,Motorbike,Urban,Broker,48,37
+2017-09-01,Passenger car,Rural,Agent,859,700
+2017-09-01,Passenger car,Rural,Broker,567,423
+2017-09-01,Passenger car,Urban,Agent,246,193
+2017-09-01,Passenger car,Urban,Broker,390,271
+2017-09-01,Van,Rural,Agent,125,105
+2017-09-01,Van,Rural,Broker,100,81
+2017-09-01,Van,Urban,Agent,25,19
+2017-09-01,Van,Urban,Broker,63,52
+2017-10-01,Agricultural,Rural,Agent,18,17
+2017-10-01,Agricultural,Rural,Broker,1,1
+2017-10-01,Agricultural,Urban,Agent,7,7
+2017-10-01,Motorbike,Rural,Agent,76,57
+2017-10-01,Motorbike,Rural,Broker,44,39
+2017-10-01,Motorbike,Urban,Agent,40,36
+2017-10-01,Motorbike,Urban,Broker,32,22
+2017-10-01,Passenger car,Rural,Agent,980,811
+2017-10-01,Passenger car,Rural,Broker,598,436
+2017-10-01,Passenger car,Urban,Agent,300,234
+2017-10-01,Passenger car,Urban,Broker,337,250
+2017-10-01,Van,Rural,Agent,127,103
+2017-10-01,Van,Rural,Broker,106,85
+2017-10-01,Van,Urban,Agent,48,36
+2017-10-01,Van,Urban,Broker,55,40
+2017-11-01,Agricultural,Rural,Agent,10,7
+2017-11-01,Agricultural,Rural,Broker,2,2
+2017-11-01,Motorbike,Rural,Agent,64,51
+2017-11-01,Motorbike,Rural,Broker,31,20
+2017-11-01,Motorbike,Urban,Agent,18,15
+2017-11-01,Motorbike,Urban,Broker,24,20
+2017-11-01,Passenger car,Rural,Agent,815,687
+2017-11-01,Passenger car,Rural,Broker,535,394
+2017-11-01,Passenger car,Urban,Agent,216,166
+2017-11-01,Passenger car,Urban,Broker,323,253
+2017-11-01,Van,Rural,Agent,132,114
+2017-11-01,Van,Rural,Broker,113,85
+2017-11-01,Van,Urban,Agent,38,33
+2017-11-01,Van,Urban,Broker,52,30
+2017-12-01,Agricultural,Rural,Agent,24,22
+2017-12-01,Agricultural,Rural,Broker,2,2
+2017-12-01,Agricultural,Urban,Agent,2,2
+2017-12-01,Agricultural,Urban,Broker,2,2
+2017-12-01,Motorbike,Rural,Agent,47,40
+2017-12-01,Motorbike,Rural,Broker,22,18
+2017-12-01,Motorbike,Urban,Agent,21,19
+2017-12-01,Motorbike,Urban,Broker,18,13
+2017-12-01,Passenger car,Rural,Agent,890,761
+2017-12-01,Passenger car,Rural,Broker,510,393
+2017-12-01,Passenger car,Urban,Agent,232,186
+2017-12-01,Passenger car,Urban,Broker,296,212
+2017-12-01,Van,Rural,Agent,103,92
+2017-12-01,Van,Rural,Broker,115,78
+2017-12-01,Van,Urban,Agent,29,23
+2017-12-01,Van,Urban,Broker,58,45
+2018-01-01,Agricultural,Rural,Agent,15,14
+2018-01-01,Agricultural,Rural,Broker,3,3
+2018-01-01,Agricultural,Urban,Agent,2,2
+2018-01-01,Motorbike,Rural,Agent,54,42
+2018-01-01,Motorbike,Rural,Broker,20,17
+2018-01-01,Motorbike,Urban,Agent,27,21
+2018-01-01,Motorbike,Urban,Broker,26,19
+2018-01-01,Passenger car,Rural,Agent,819,671
+2018-01-01,Passenger car,Rural,Broker,528,383
+2018-01-01,Passenger car,Urban,Agent,222,171
+2018-01-01,Passenger car,Urban,Broker,273,198
+2018-01-01,Van,Rural,Agent,114,92
+2018-01-01,Van,Rural,Broker,120,94
+2018-01-01,Van,Urban,Agent,36,32
+2018-01-01,Van,Urban,Broker,54,42
+2018-02-01,Agricultural,Rural,Agent,16,13
+2018-02-01,Agricultural,Rural,Broker,3,2
+2018-02-01,Agricultural,Urban,Agent,7,7
+2018-02-01,Agricultural,Urban,Broker,2,2
+2018-02-01,Motorbike,Rural,Agent,56,47
+2018-02-01,Motorbike,Rural,Broker,38,24
+2018-02-01,Motorbike,Urban,Agent,32,25
+2018-02-01,Motorbike,Urban,Broker,29,17
+2018-02-01,Passenger car,Rural,Agent,821,658
+2018-02-01,Passenger car,Rural,Broker,577,412
+2018-02-01,Passenger car,Urban,Agent,218,187
+2018-02-01,Passenger car,Urban,Broker,328,235
+2018-02-01,Van,Rural,Agent,128,107
+2018-02-01,Van,Rural,Broker,107,93
+2018-02-01,Van,Urban,Agent,28,25
+2018-02-01,Van,Urban,Broker,48,40
+2018-03-01,Agricultural,Rural,Agent,16,10
+2018-03-01,Agricultural,Rural,Broker,4,4
+2018-03-01,Agricultural,Urban,Agent,2,2
+2018-03-01,Motorbike,Rural,Agent,91,76
+2018-03-01,Motorbike,Rural,Broker,62,53
+2018-03-01,Motorbike,Urban,Agent,36,27
+2018-03-01,Motorbike,Urban,Broker,25,19
+2018-03-01,Passenger car,Rural,Agent,927,777
+2018-03-01,Passenger car,Rural,Broker,650,469
+2018-03-01,Passenger car,Urban,Agent,249,189
+2018-03-01,Passenger car,Urban,Broker,326,229
+2018-03-01,Van,Rural,Agent,146,119
+2018-03-01,Van,Rural,Broker,142,108
+2018-03-01,Van,Urban,Agent,22,19
+2018-03-01,Van,Urban,Broker,62,46
+2018-04-01,Agricultural,Rural,Agent,14,12
+2018-04-01,Agricultural,Rural,Broker,6,6
+2018-04-01,Agricultural,Urban,Agent,4,4
+2018-04-01,Agricultural,Urban,Broker,1,1
+2018-04-01,Motorbike,Rural,Agent,94,72
+2018-04-01,Motorbike,Rural,Broker,56,41
+2018-04-01,Motorbike,Urban,Agent,35,29
+2018-04-01,Motorbike,Urban,Broker,30,22
+2018-04-01,Passenger car,Rural,Agent,891,725
+2018-04-01,Passenger car,Rural,Broker,574,438
+2018-04-01,Passenger car,Urban,Agent,246,196
+2018-04-01,Passenger car,Urban,Broker,312,208
+2018-04-01,Van,Rural,Agent,113,97
+2018-04-01,Van,Rural,Broker,134,99
+2018-04-01,Van,Urban,Agent,28,22
+2018-04-01,Van,Urban,Broker,46,40
+2018-05-01,Agricultural,Rural,Agent,16,13
+2018-05-01,Agricultural,Rural,Broker,2,2
+2018-05-01,Agricultural,Urban,Agent,2,2
+2018-05-01,Agricultural,Urban,Broker,2,1
+2018-05-01,Motorbike,Rural,Agent,115,92
+2018-05-01,Motorbike,Rural,Broker,71,59
+2018-05-01,Motorbike,Urban,Agent,59,48
+2018-05-01,Motorbike,Urban,Broker,49,39
+2018-05-01,Passenger car,Rural,Agent,905,727
+2018-05-01,Passenger car,Rural,Broker,657,481
+2018-05-01,Passenger car,Urban,Agent,270,212
+2018-05-01,Passenger car,Urban,Broker,317,227
+2018-05-01,Van,Rural,Agent,148,119
+2018-05-01,Van,Rural,Broker,131,97
+2018-05-01,Van,Urban,Agent,49,36
+2018-05-01,Van,Urban,Broker,43,27
+2018-06-01,Agricultural,Rural,Agent,22,20
+2018-06-01,Agricultural,Rural,Broker,2,1
+2018-06-01,Agricultural,Urban,Agent,2,1
+2018-06-01,Motorbike,Rural,Agent,158,129
+2018-06-01,Motorbike,Rural,Broker,101,75
+2018-06-01,Motorbike,Urban,Agent,48,34
+2018-06-01,Motorbike,Urban,Broker,53,41
+2018-06-01,Passenger car,Rural,Agent,979,823
+2018-06-01,Passenger car,Rural,Broker,680,521
+2018-06-01,Passenger car,Urban,Agent,287,235
+2018-06-01,Passenger car,Urban,Broker,404,296
+2018-06-01,Van,Rural,Agent,154,126
+2018-06-01,Van,Rural,Broker,128,104
+2018-06-01,Van,Urban,Agent,30,25
+2018-06-01,Van,Urban,Broker,48,38
+2018-07-01,Agricultural,Rural,Agent,14,12
+2018-07-01,Agricultural,Rural,Broker,1,1
+2018-07-01,Agricultural,Urban,Agent,4,3
+2018-07-01,Agricultural,Urban,Broker,1,1
+2018-07-01,Motorbike,Rural,Agent,202,169
+2018-07-01,Motorbike,Rural,Broker,83,68
+2018-07-01,Motorbike,Urban,Agent,55,46
+2018-07-01,Motorbike,Urban,Broker,51,46
+2018-07-01,Passenger car,Rural,Agent,1148,949
+2018-07-01,Passenger car,Rural,Broker,774,586
+2018-07-01,Passenger car,Urban,Agent,338,267
+2018-07-01,Passenger car,Urban,Broker,416,279
+2018-07-01,Van,Rural,Agent,148,117
+2018-07-01,Van,Rural,Broker,135,115
+2018-07-01,Van,Urban,Agent,36,28
+2018-07-01,Van,Urban,Broker,56,44
+2018-08-01,Agricultural,Rural,Agent,15,12
+2018-08-01,Agricultural,Rural,Broker,5,5
+2018-08-01,Motorbike,Rural,Agent,94,81
+2018-08-01,Motorbike,Rural,Broker,63,51
+2018-08-01,Motorbike,Urban,Agent,44,41
+2018-08-01,Motorbike,Urban,Broker,46,34
+2018-08-01,Passenger car,Rural,Agent,944,782
+2018-08-01,Passenger car,Rural,Broker,624,477
+2018-08-01,Passenger car,Urban,Agent,246,208
+2018-08-01,Passenger car,Urban,Broker,276,211
+2018-08-01,Van,Rural,Agent,133,112
+2018-08-01,Van,Rural,Broker,93,71
+2018-08-01,Van,Urban,Agent,21,15
+2018-08-01,Van,Urban,Broker,42,32
+2018-09-01,Agricultural,Rural,Agent,19,17
+2018-09-01,Agricultural,Rural,Broker,4,3
+2018-09-01,Agricultural,Urban,Agent,3,3
+2018-09-01,Agricultural,Urban,Broker,2,2
+2018-09-01,Motorbike,Rural,Agent,109,93
+2018-09-01,Motorbike,Rural,Broker,57,44
+2018-09-01,Motorbike,Urban,Agent,36,29
+2018-09-01,Motorbike,Urban,Broker,49,39
+2018-09-01,Passenger car,Rural,Agent,935,791
+2018-09-01,Passenger car,Rural,Broker,639,496
+2018-09-01,Passenger car,Urban,Agent,252,194
+2018-09-01,Passenger car,Urban,Broker,375,268
+2018-09-01,Van,Rural,Agent,134,115
+2018-09-01,Van,Rural,Broker,112,93
+2018-09-01,Van,Urban,Agent,24,19
+2018-09-01,Van,Urban,Broker,69,42
+2018-10-01,Agricultural,Rural,Agent,21,19
+2018-10-01,Agricultural,Rural,Broker,2,2
+2018-10-01,Agricultural,Urban,Agent,7,7
+2018-10-01,Motorbike,Rural,Agent,81,67
+2018-10-01,Motorbike,Rural,Broker,58,47
+2018-10-01,Motorbike,Urban,Agent,51,43
+2018-10-01,Motorbike,Urban,Broker,32,26
+2018-10-01,Passenger car,Rural,Agent,1111,952
+2018-10-01,Passenger car,Rural,Broker,706,558
+2018-10-01,Passenger car,Urban,Agent,301,238
+2018-10-01,Passenger car,Urban,Broker,353,259
+2018-10-01,Van,Rural,Agent,149,128
+2018-10-01,Van,Rural,Broker,139,113
+2018-10-01,Van,Urban,Agent,46,37
+2018-10-01,Van,Urban,Broker,60,49
+2018-11-01,Agricultural,Rural,Agent,9,7
+2018-11-01,Agricultural,Rural,Broker,2,2
+2018-11-01,Agricultural,Urban,Agent,1,1
+2018-11-01,Motorbike,Rural,Agent,70,57
+2018-11-01,Motorbike,Rural,Broker,36,30
+2018-11-01,Motorbike,Urban,Agent,25,19
+2018-11-01,Motorbike,Urban,Broker,39,36
+2018-11-01,Passenger car,Rural,Agent,972,825
+2018-11-01,Passenger car,Rural,Broker,657,531
+2018-11-01,Passenger car,Urban,Agent,243,207
+2018-11-01,Passenger car,Urban,Broker,364,280
+2018-11-01,Van,Rural,Agent,173,156
+2018-11-01,Van,Rural,Broker,124,94
+2018-11-01,Van,Urban,Agent,36,28
+2018-11-01,Van,Urban,Broker,49,38
