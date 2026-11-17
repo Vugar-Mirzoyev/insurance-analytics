@@ -142,13 +142,40 @@ test with a planted case in `tests/conftest.py`.
 | Policy years not yet ended on the valuation date | 35,815 | Premium written but only partly earned: earned basis used |
 | Policy years due after the last renewal in the data | 38,697 | Not counted as renewed or lost |
 | Claim counts and claim costs that disagree | 0 | |
-| Claim-type costs that do not add up to the total | 11 | Claim-type file used for the mix only |
+| Claim-type costs that do not add up to the total | 0 | All 5,255 totals agree to the cent once the gap is rounded to cents; the raw float comparison flagged 11 in SQLite and 13 in PostgreSQL, rounding noise found when the two were reconciled |
 | Vehicles with power recorded as 0 | 1,764 | Means unknown; not used in the KPIs |
 
 Run the checks from the project root:
 
 ```bash
 python -m src.data_quality
+```
+
+### The same checks in PostgreSQL, run by a stored procedure
+
+The SQLite pipeline counts exceptions each time it is rebuilt and keeps only the latest
+numbers. `src/postgres_audit.py` moves the checks into PostgreSQL, where they run as a
+monitored process:
+
+- the tables the checks read are copied over with `CREATE TABLE` and `INSERT`, the
+  portfolio dates as real `date` columns;
+- each check becomes a row of `dq_rule` (its SQL and why it matters);
+- the procedure `run_dq_checks()` (PL/pgSQL, `sql/postgres/run_dq_checks.sql`) runs every
+  active rule and writes one row per rule and run to `dq_result`: the exception count, or
+  the error message if the rule's SQL fails, so one broken rule never hides the others;
+- the view `dq_latest` puts each count next to the previous run's, so a new exception
+  shows up as a change, not as a number someone has to remember.
+
+Every count is compared with the SQLite result, and the script exits with an error if
+any differs. That comparison found a real problem: the claim-type check compared a
+floating-point sum with `> 0.01`, and gaps of exactly one cent landed either side of the
+threshold depending on the order the engine added the amounts in (11 exceptions in
+SQLite, 13 in PostgreSQL). Rounding the gap to cents first gives 0 in both: all 5,255
+claim-type totals agree to the cent.
+
+```bash
+docker compose up -d           # local PostgreSQL 17 on 127.0.0.1:5433
+python -m src.postgres_audit   # after run_pipeline.py
 ```
 
 ### Metric definitions
@@ -269,16 +296,22 @@ insurance-analytics/
 │   ├── market_monthly.sql      # Market by month
 │   ├── market_quarterly.sql    # Market by quarter, QoQ and YoY (window functions)
 │   ├── insurer_quarterly.sql   # Market share per insurer
-│   └── class_quarterly.sql     # Main insurance classes
+│   ├── class_quarterly.sql     # Main insurance classes
+│   └── postgres/
+│       ├── policy_year.sql     # The same view in PostgreSQL date arithmetic
+│       ├── audit_schema.sql    # dq_rule, dq_run, dq_result tables, dq_latest view
+│       └── run_dq_checks.sql   # PL/pgSQL procedure that runs and logs every check
 ├── src/
 │   ├── cbar_loader.py          # CBAR wide YTD sheets -> tidy months and quarters
 │   ├── database.py             # Loads everything into SQLite, runs sql/ files
 │   ├── data_quality.py         # Data quality checks
+│   ├── postgres_audit.py       # Runs the checks as a PostgreSQL procedure and logs them
 │   ├── trends.py               # Moving average, z-score, IQR, forecasts, backtest
 │   ├── charts.py               # README charts
 │   └── download.py             # Fetches the raw files
-├── tests/                      # 33 pytest tests on sample files with planted traps
+├── tests/                      # 41 pytest tests on sample files with planted traps
 ├── run_pipeline.py             # Builds the database, checks, tables and charts
+├── docker-compose.yml          # Local PostgreSQL for postgres_audit.py
 └── requirements.txt
 ```
 
@@ -306,8 +339,11 @@ parameter holds the full path of `data/processed`: set it to the folder of your 
 python -m pytest tests/ -v
 ```
 
-Expected output: 33 tests passing. The tests build their own small sample files with
-the same layout and the same traps as the real data, so they do not need the downloads.
+Expected output: 37 tests passing and 4 skipped. The tests build their own small sample
+files with the same layout and the same traps as the real data, so they do not need the
+downloads. The 4 skipped tests run the procedure on a real PostgreSQL; to include them,
+start it with `docker compose up -d` and set
+`INSURANCE_PG_DSN=postgresql://audit:audit@127.0.0.1:5433/insurance` (41 passing).
 
 ---
 
@@ -326,7 +362,7 @@ the same layout and the same traps as the real data, so they do not need the dow
 |---|---|
 | Language | Python 3.10+ |
 | Data | pandas, NumPy, openpyxl |
-| Database | SQLite (CTEs, window functions) |
+| Database | SQLite (CTEs, window functions); PostgreSQL 17 (PL/pgSQL procedure, audit log tables) via psycopg, Docker Compose |
 | Charts | Matplotlib (README charts) |
 | Report | Power BI Desktop: PBIP with a TMDL model, PBIR pages, DAX measures, Power Query |
 | Testing | pytest |

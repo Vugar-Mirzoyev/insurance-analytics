@@ -14,5 +14,5 @@ portfolio,Policies that ended without a lapse date,0,"Not renewed but no lapse r
 portfolio,Policy years not yet ended on the valuation date,35815,"Premium is written in full but only partly earned. The loss ratio of these years uses earned premium, and is still too low because of late claims."
 portfolio,Policy years due after the last renewal in the data,38697,They have not had the chance to renew. Counting them as lost would show a 0% renewal rate for December 2018.
 portfolio,Claim counts and claim costs that disagree,0,Severity (cost per claim) assumes cost and count describe the same claims.
-portfolio,Claim-type costs that do not add up to the policy-year total,11,The claim-type file is a sample used for the claim mix only; totals always come from the policy table.
+portfolio,Claim-type costs that do not add up to the policy-year total,0,"The claim-type file is a sample used for the claim mix only; totals always come from the policy table. A one-cent gap is rounding of the type amounts, not a mismatch; the difference is rounded to cents first, because a raw floating-point sum lands either side of 0.01 depending on the order it is added in, and SQLite and PostgreSQL add in different orders."
 portfolio,Vehicles with power recorded as 0,1764,"0 means unknown, not a vehicle without an engine. Not used in the KPIs."

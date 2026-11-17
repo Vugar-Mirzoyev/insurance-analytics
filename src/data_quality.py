@@ -142,9 +142,13 @@ CHECKS = [
         """SELECT COUNT(*) FROM (
                SELECT id, cost_claims_year FROM claim_types
                GROUP BY id, cost_claims_year
-               HAVING ABS(SUM(cost_claims_by_type) - cost_claims_year) > 0.01)""",
+               HAVING ABS(ROUND(CAST(SUM(cost_claims_by_type) - cost_claims_year
+                                     AS NUMERIC), 2)) > 0.01)""",
         "The claim-type file is a sample used for the claim mix only; totals always "
-        "come from the policy table.",
+        "come from the policy table. A one-cent gap is rounding of the type amounts, "
+        "not a mismatch; the difference is rounded to cents first, because a raw "
+        "floating-point sum lands either side of 0.01 depending on the order it is "
+        "added in, and SQLite and PostgreSQL add in different orders.",
     ),
     (
         "portfolio",
